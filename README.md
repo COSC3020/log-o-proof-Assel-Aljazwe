@@ -31,8 +31,11 @@ $$\log_5 n = \frac{1}{k} \(log_2 n)$$
 
 where $\frac{1}{k}$ is a constant multiplier.
 
-**Using Big O Defintion to Conclude Asymptotic Equivalence**: Given that $(\log_{5} n)$ is a constant multiple of $(\log_{2} n)$ , according to the definition of Big O Notation, functions are equivalent if they differ only by a constant factor. Therefore, the growth rates of $(\log_{2} n)$ and $(\log_{5} n)$ are considered equivalent in Big O Notation. <br />
+**Using Big O Defintion to Conclude Asymptotic Equivalence**: Given that $(\log_{5} n)$ is a constant multiple of $(\log_{2} n)$ , according to the definition of Big O Notation, if two functions $f(n)$ and $g(n)$ satisfy $f(n) ≤ c * g(n)$ for some constant $c > 0$ and all sufficiently large $n$, then $f(n)$ ∈ $O(g(n))$.
 
-So we can arrive to the conclusion that $O(\log_{2} n)$ is the same as $O(\log_{5} n)$, since the base of the logarithm has no affect how it is categorized in terms of asymptotic complexity.
+$*$ From $(\log_{5} n)$ to $(\log_{2} n)$: Given the relationship $\log_5 n = \frac{1}{k} \(log_2 n)$, its clear that for any n, $(\log_{5} n)$ grows at the same rate as $(\log_{2} n)$, differing only by the constant factor $\frac{1}{k}$. This means $(\log_{5} n)$ ∈ $O(\log_{2} n)$
 
-O(log<sub>2</sub>n) = O(log<sub>5</sub>n)
+$*$ From $(\log_{2} n)$ to $(\log_{5} n)$: Similarly, multiplying both sides of the equation by k, we get $(\log_{2} n)$ = $k * (\log_{5} n)$. Here, $(\log_{2} n)$ is within a constant factor k of $(\log_{5} n)$, which shows $(\log_{2} n)$ ∈ $O(\log_{5} n)$
+
+The proofs above demonstrate that $(\log_{2} n)$ and $(\log_{5} n)$ are within constant factors of each other. So we can arrive to the conclusion by the definition of Big O notation that O(log<sub>2</sub>n) = O(log<sub>5</sub>n). This is also due to the fact that the base of the logarithm has no affect on how it is categorized in terms of asymptotic complexity. Therefore, the growth rates of $(\log_{2} n)$ and $(\log_{5} n)$ are considered equivalent in Big O Notation. <br />
+
