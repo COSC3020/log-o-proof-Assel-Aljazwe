@@ -13,35 +13,33 @@ might help with the notation for mathematical expressions.
 
 $T(n) \in O(f(n)) \iff \exists c, n_0: T(n) \leq c \cdot f(n) \forall n \geq n_0$
 
-## Proof:
-**Defining Big O**: Big O notation $O(f(n))$ defines an upper bound of $f(n)$, meaning $f(n) ≤ c * g(n)$ for some constant $c > 0$ and a sufficiently large $n$, n ≥ n<sub>0</sub> <br />
 ### Proving O(log<sub>2</sub>n) = O(log<sub>5</sub>n): <br />
 
-**Recalling Change of Base Formula for Logarithms**: $$\log_b a = \frac{\log_c a}{\log_c b}$$ where \(a > 0\), \(b > 1\), and \(c > 1\). <br />
+### Formal Definition of Big O Notation
+The definition of Big O notation is as follows:
+$$f(n) \in O(g(n)) \iff \exists c > 0, n_0 > 0 : 0 \leq f(n) \leq c \cdot g(n), \forall n \geq n_0$$
 
-**Applying Change of Base Formula to Relate $(\log_{2} n)$ and $(\log_{5} n)$**:
+### Change of Base Formula
+The change of base formula for logarithms is important for this proof:
+$$\log_{a} n = \frac{\log_{b} n}{\log_{b} a}$$
 
-$$\log_5 n = \frac{\log_2 n}{\log_2 5}$$
+### Proof Method
+To show that $\log_{2} n$ and $\log_{5} n$ are equivalent in terms of Big O notation, we'll find constants $c$ and $n_0$ that satisfy the formal definition of Big O notation.
 
-**Setting Constants**: Let k = log<sub>2</sub>5, which is a constant because both 2 and 5 are constants <br />
+### Application of Change of Base Formula
+Converting $\log_{2} n$ to base 5 using the change of base formula gives us:
+$$\log_{2} n = \frac{\log_{5} n}{\log_{5} 2}$$
 
-**Equivalent expression for (log<sub>5</sub>n)**:
+Representing $\frac{1}{\log_{5} 2}$ as $k$, where $k$ is a constant because $\log_{5} 2 > 0$. This allows us to express $\log_{2} n$ as a multiple of $\log_{5} n$:
+$$\log_{2} n = k \cdot \log_{5} n$$
 
-$$\log_5 n = \frac{1}{k} \(log_2 n)$$
+### Establishing Equivalence
+Given the relationship between $\log_{2} n$ and $\log_{5} n$, we see that for any choice of $n_0 > 1$, there exists a constant $c = k$ such that:
+$$\log_{2} n \leq c \cdot \log_{5} n, \forall n \geq n_0$$
 
-where $\frac{1}{k}$ is a constant multiplier.
+### Conclusion
+Since we can express $\log_{2} n$ as a constant multiple of $\log_{5} n$, and this relationship holds for all $n \geq n_0$, we can conclude that:
+$$O(\log_{2} n) = O(\log_{5} n)$$
 
-**Using Big O Defintion to Conclude Asymptotic Equivalence**: Given that $(\log_{5} n)$ is a constant multiple of $(\log_{2} n)$ , according to the definition of Big O Notation, if two functions $f(n)$ and $g(n)$ satisfy $f(n) ≤ c * g(n)$ for some constant $c > 0$ and all sufficiently large $n$, then $f(n)$ ∈ $O(g(n))$.
-
-**Demonstrating Constant Factors Do Not Matter using Big O Definition**:
-
-Lets theoretically consider f(n) = $(\log_{5} n)$ and g(n) = $(\log_{2} n)$. According to the Big O Definition, we're looking for a constant C such that $f(n) ≤ C * g(n)$ for sufficiently large $n$
-
-Given the change of base formula, $\log_5 n = \frac{\log_2 n}{\log_2 5}$, we can identify k = ${\log_2 5}$ as a constant factor. This transformation shows that $(\log_{5} n)$ can be bounded by $(\log_{2} n)$ when multiplied by any constant C ≥ $\frac{1}{k}$. Thus showing that the specific value of C (in this case $\frac{1}{k}$) does not impact the classification of $\log_5 n$ in terms of Big O notation because any constant factor satisfying C ≥ $\frac{1}{k}$ can be used to meet the Big O criteria.
-
-By choosing C = $\frac{1}{k}$ (or any C ≥ $\frac{1}{k}$) and any n<sub>0</sub> > 1, we prove that $(\log_{5} n)$ grows no faster than a constant multiple of $(\log_{2} n)$. Therefore, confirming $(\log_{5} n)$ ∈ $O(\log_{2} n)$, and demonstrating that the constants (including the log bases) do not change/have no impact on the growth rate comparison between $(\log_{5} n)$ and $(\log_{2} n)$. The constant in this case only serves to scale functions for comparison. Moreover, this proves the bases of these logarithms, also treated as constants, have no impact on the asymptotic classification.
-
-$*$ **Reciprocal from $(\log_{2} n)$ to $(\log_{5} n)$**: Similarly, multiplying both sides of the equation by k, we get $(\log_{2} n)$ = $k * (\log_{5} n)$. Here, the roles of $(\log_{2} n)$ and $(\log_{5} n)$ are reversed, demonstrating that $(\log_{2} n)$ can similarly be bounded by $(\log_{5} n)$ multiplied by a constant (in this case, k or even any constant C' > k), further reinforcing the idea that the choice of the constant (whether k or 1/k) is irrelevant for asymptotic classification. So, similarly $(\log_{2} n)$ ∈ $O(\log_{5} n)$
-
-The analysis above demonstrates through direct application of the Big O definition and the logarithm change of base formula, that constant factors like k and 1/k do not affect the asymptotic classification of functions. By showing that $(\log_{5} n)$ can be expressed as a constant multiple of $(\log_{2} n)$ and vice versa, and that any constant greater than the initial constants k or 1/k satisfy the Big O criteria, we confirm that $O(\log_{2} n)$ = $O(\log_{5} n)$. Hence concluding that the constants, including the bases of logarithms, while being different constants don't impact how we classify their growth with Big O notation, reinforcing the idea that constants don't really matter in Big O. Moreover, as these functions grow, the impact of the constant multipliers (including those that represent logarithmic bases) become negligible compared to the function's log n growth rates.
+This proves that logarithms with different bases are equivalent in Big O notation, showing that the base of the logarithm does not affect the asymptotic complexity class.
 
