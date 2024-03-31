@@ -13,6 +13,7 @@ might help with the notation for mathematical expressions.
 
 $T(n) \in O(f(n)) \iff \exists c, n_0: T(n) \leq c \cdot f(n) \forall n \geq n_0$
 
+
 # Proof of Asymptotic Equivalence
 
 ## Formal Definition of Big O Notation
@@ -59,4 +60,5 @@ Since $k'$ is a constant, we can choose $c' = k'$ and $n_0' = 1$, ensuring:
 $$\log_{5} n \leq c' \cdot \log_{2} n, \quad \forall n \geq n_0'$$
 
 This proves that $\log_{5} n \in O(\log_{2} n)$, thus showing the two logarithmic functions are asymptotically equivalent
+
 
