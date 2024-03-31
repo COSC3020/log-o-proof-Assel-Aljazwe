@@ -58,5 +58,5 @@ $$f(n) \leq c' \cdot g(n) \quad \text{for all} \quad n \geq n_0'$$
 Since $k'$ is a constant, we can choose $c' = k'$ and $n_0' = 1$, ensuring:
 $$\log_{5} n \leq c' \cdot \log_{2} n, \quad \forall n \geq n_0'$$
 
-This proves that $\log_{5} n \in O(\log_{2} n)$, thus showing the two logarithmic functions are asymptotically equivalent.
+This proves that $\log_{5} n \in O(\log_{2} n)$, thus showing the two logarithmic functions are asymptotically equivalent
 
