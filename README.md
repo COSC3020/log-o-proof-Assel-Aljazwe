@@ -14,51 +14,64 @@ might help with the notation for mathematical expressions.
 $T(n) \in O(f(n)) \iff \exists c, n_0: T(n) \leq c \cdot f(n) \forall n \geq n_0$
 
 
-# Proof of Asymptotic Equivalence
+# Proving that $O(\log_2 n)$ is the same as $O(\log_5 n)$ using the formal definition of Big O notation.
 
 ## Formal Definition of Big O Notation
 
-Big O notation formally defines that $f(n) \in O(g(n))$ if and only if there exist constants $c > 0$ and $n_0 > 0$ such that $0 \leq f(n) \leq c \cdot g(n)$ for all $n \geq n_0$.
+For two functions $f(n)$ and $g(n)$,
 
-## Change of Base Formula
+$$
+f(n) \in O(g(n)) \Leftrightarrow \exists c > 0, n_0 > 0 : 0 \leq f(n) \leq c \cdot g(n), \forall n \geq n_0
+$$
 
-The change of base formula for logarithms states: 
-$$\log_{a} n = \frac{\log_{b} n}{\log_{b} a}$$
+Our goal is to show that $\log_2(n) \in O(\log_5(n))$ and vice versa.
 
-## Proof for $\log_{2} n$ and $\log_{5} n$ Being Asymptotically Equivalent
+## Proof:
 
-Using the change of base formula, we can express $\log_{2} n$ in terms of $\log_{5} n$:
+We can utilize the change of base formula for logarithms:
 
-$$\log_{2} n = \frac{\log_{5} n}{\log_{5} 2}$$
+$$
+\log_a(b) = \frac{\log_c(b)}{\log_c(a)}
+$$
 
-Let $k = \frac{1}{\log_{5} 2}$, which is a constant because $\log_{5} 2$ is a positive real number. Thus, we can write:
+for any positive $a, b, c$, where $a \neq 1$, $b \neq 1$, and $c \neq 1$.
 
-$$\log_{2} n = k \cdot \log_{5} n$$
+### Proving $\log_2(n) \in O(\log_5(n))$
 
-To satisfy the formal definition of Big O notation, we need to show that for $f(n) = \log_{2} n$ and $g(n) = \log_{5} n$, there exists a constant $c$ such that $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$.
+By applying the change of base formula, we express $\log_2(n)$ in terms of $\log_5(n)$:
 
-Since $k$ is a constant, we can choose $c = k$ and $n_0 = 1$, therefore satisfying:
+$$
+\log_2(n) = \frac{\log_5(n)}{\log_5(2)}
+$$
 
-$$\log_{2} n \leq c \cdot \log_{5} n, \forall n \geq n_0$$
+**Assumption for Contradiction:** Suppose $\log_2(n) \notin O(\log_5(n))$.
 
-This establishes that $\log_{2} n \in O(\log_{5} n)$
+This would mean that there exists no values of $c > 0$ and $n_0 > 0$, to satisfy the following:
 
-### Reverse Direction:
+$$
+0 \leq \left(\frac{\log_5(n)}{\log_5(2)}\right) \leq c \cdot \log_5(n), \forall n \geq n_0
+$$
 
-Given that $\log_{2} n = k \cdot \log_{5} n$ with $k = \frac{1}{\log_{5} 2}$, we reverse the process to express $\log_{5} n$ in terms of $\log_{2} n$.
+**Contradiction:** However, by setting $c = \frac{1}{\log_5(2)}$, a constant greater than 0, and choosing any $n_0 > 1$, the inequality is satisfied. This contradicts the assumption.
 
-Using the change of base formula again, we have:
-$$\log_{5} n = \frac{\log_{2} n}{\log_{2} 5}$$
+### Proving $\log_5(n) \in O(\log_2(n))$
 
-Let $k' = \frac{1}{\log_{2} 5}$, which is also a constant. Therefore:
-$$\log_{5} n = k' \cdot \log_{2} n$$
+Similarly, we apply the change of base formula to express $\log_5(n)$ in terms of $\log_2(n)$:
 
-To satisfy the Big O notation definition for $f(n) = \log_{5} n$ and $g(n) = \log_{2} n$, there must exist a constant $c'$ such that:
-$$f(n) \leq c' \cdot g(n) \quad \text{for all} \quad n \geq n_0'$$
+$$
+\log_5(n) = \frac{\log_2(n)}{\log_2(5)}
+$$
 
-Since $k'$ is a constant, we can choose $c' = k'$ and $n_0' = 1$, ensuring:
-$$\log_{5} n \leq c' \cdot \log_{2} n, \quad \forall n \geq n_0'$$
+**Assumption for Contradiction:** Assume $\log_5(n) \notin O(\log_2(n))$.
 
-This proves that $\log_{5} n \in O(\log_{2} n)$, thus showing the two logarithmic functions are asymptotically equivalent
+This implies that there exist no values of $c > 0$ and $n_0 > 0$ that can satisfy:
 
+$$
+0 \leq \left(\frac{\log_2(n)}{\log_2(5)}\right) \leq c \cdot \log_2(n), \forall n \geq n_0
+$$
 
+**Contradiction:** Selecting $c = \frac{1}{\log_2(5)}$ and any $n_0 > 1$ shows that the inequality can always be satisfied, which contradicts the initial assumption.
+
+## Conclusion
+
+The assumptions for contradiction in both cases were proven wrong, therefore confirming asymptotic equivalence between $\log_2(n)$ and $\log_5(n)$. Thus generalizing the argument, showing that for any $n$ greater than a specified $n_0$, the logarithmic functions with bases 2 and 5 are asymptotically equivalent within Big O notation.
