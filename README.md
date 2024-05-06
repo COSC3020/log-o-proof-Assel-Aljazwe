@@ -14,64 +14,60 @@ might help with the notation for mathematical expressions.
 $T(n) \in O(f(n)) \iff \exists c, n_0: T(n) \leq c \cdot f(n) \forall n \geq n_0$
 
 
-# Proving that $O(\log_2 n)$ is the same as $O(\log_5 n)$ using the formal definition of Big O notation.
+## Proof By Contradiction:
 
-## Formal Definition of Big O Notation
+### 1\. Proving $\\log\_2(n) \\in O(\\log\_5(n))$
 
-For two functions $f(n)$ and $g(n)$,
+**Assumption for Contradiction:**
 
-$$
-f(n) \in O(g(n)) \Leftrightarrow \exists c > 0, n_0 > 0 : 0 \leq f(n) \leq c \cdot g(n), \forall n \geq n_0
-$$
+Suppose $\\log\_2(n) \\notin O(\\log\_5(n))$. This means that for every $c > 0$ and every $n\_0 > 0$, there exists some $n \\geq n\_0$ such that:
 
-Our goal is to show that $\log_2(n) \in O(\log_5(n))$ and vice versa.
+$\log\_2(n) > c \\cdot \\log\_5(n)$
 
-## Proof:
+**Using Change of Base Formula:**
 
-We can utilize the change of base formula for logarithms:
+$\log\_2(n) = \\frac{\\log\_5(n)}{\\log\_5(2)}$​
 
-$$
-\log_a(b) = \frac{\log_c(b)}{\log_c(a)}
-$$
+**Deriving Contradiction:**
 
-for any positive $a, b, c$, where $a \neq 1$, $b \neq 1$, and $c \neq 1$.
+Choosing $c = \\frac{1}{\\log\_5(2)}$. It follows that for all $n \\geq 1$:
 
-### Proving $\log_2(n) \in O(\log_5(n))$
+$\log\_2(n) = c \\cdot \\log\_5(n)$
 
-By applying the change of base formula, we express $\log_2(n)$ in terms of $\log_5(n)$:
+This contradicts the assumption, thus proving $\\log\_2(n) \\in O(\\log\_5(n))$.
 
-$$
-\log_2(n) = \frac{\log_5(n)}{\log_5(2)}
-$$
+### 2\. Proving $\\log\_5(n) \\in O(\\log\_2(n))$
 
-**Assumption for Contradiction:** Suppose $\log_2(n) \notin O(\log_5(n))$.
+**Assumption for Contradiction:**
 
-This would mean that there exists no values of $c > 0$ and $n_0 > 0$, to satisfy the following:
+Assume $\\log\_5(n) \\notin O(\\log\_2(n))$. This implies that for every $c > 0$ and every $n\_0 > 0$, there exists some $n \\geq n\_0$ such that:
 
-$$
-0 \leq \left(\frac{\log_5(n)}{\log_5(2)}\right) \leq c \cdot \log_5(n), \forall n \geq n_0
-$$
+$\log\_5(n) > c \\cdot \\log\_2(n)$
 
-**Contradiction:** However, by setting $c = \frac{1}{\log_5(2)}$, a constant greater than 0, and choosing any $n_0 > 1$, the inequality is satisfied. This contradicts the assumption.
+**Using Change of Base Formula:**
 
-### Proving $\log_5(n) \in O(\log_2(n))$
+$\log\_5(n) = \\frac{\\log\_2(n)}{\\log\_2(5)}$
 
-Similarly, we apply the change of base formula to express $\log_5(n)$ in terms of $\log_2(n)$:
+**Deriving Contradiction:**
 
-$$
-\log_5(n) = \frac{\log_2(n)}{\log_2(5)}
-$$
+Choosing $c = \\frac{1}{\\log\_2(5)}$. It follows that for all $n \\geq 1$:
 
-**Assumption for Contradiction:** Assume $\log_5(n) \notin O(\log_2(n))$.
+$\log\_5(n) = c \\cdot \\log\_2(n)$
 
-This implies that there exist no values of $c > 0$ and $n_0 > 0$ that can satisfy:
+This contradicts the assumption, proving that $\\log\_5(n) \\in O(\\log\_2(n))$.
 
-$$
-0 \leq \left(\frac{\log_2(n)}{\log_2(5)}\right) \leq c \cdot \log_2(n), \forall n \geq n_0
-$$
+# Useful Resources:
 
-**Contradiction:** Selecting $c = \frac{1}{\log_2(5)}$ and any $n_0 > 1$ shows that the inequality can always be satisfied, which contradicts the initial assumption.
+Logarithm change of base rule intro https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs/x2ec2f6f830c9fb89:change-of-base/a/logarithm-change-of-base-rule-intro
 
-## Conclusion
+Time complexity of an algorithm: Is it important to state the base of the logarithm? https://cs.stackexchange.com/questions/109607/time-complexity-of-an-algorithm-is-it-important-to-state-the-base-of-the-logari
 
-The assumptions for contradiction in both cases were proven wrong, therefore confirming asymptotic equivalence between $\log_2(n)$ and $\log_5(n)$. Thus generalizing the argument, showing that for any $n$ greater than a specified $n_0$, the logarithmic functions with bases 2 and 5 are asymptotically equivalent within Big O notation.
+Relationship between logarithms with different bases in Time Complexity Analysis https://www.linkedin.com/pulse/relationship-between-logarithms-different-bases-time-analysis-baloch
+
+Omitting bases in Logs -> Big O https://math.stackexchange.com/questions/37377/omitting-bases-in-logs-big-o
+
+ChatGPT https://chatgpt.com/
+
+
+
+
